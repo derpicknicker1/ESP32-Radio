@@ -1875,11 +1875,31 @@ bool connecttohost()
   int         port = 80 ;                           // Port number for host
   String      extension = "/" ;                     // May be like "/mp3" in "skonto.ls.lv:8002/mp3"
   String      hostwoext ;                           // Host without extension and portnumber
+  String      statstr ;                             // Station string
+  char        tkey[12] ;
 
   stop_mp3client() ;                                // Disconnect if still connected
   dbgprint ( "Connect to new host %s", host.c_str() ) ;
   displayinfo ( "ESP32-Radio", 0, 20, WHITE ) ;
   displaytime ( "        ", WHITE, true ) ;         // Clear time on TFT screen
+
+  //get station name from presets in case of no icy-name is in the stream
+  sprintf ( tkey, "preset_%02d", currentpreset ) ;  // Preset plus number
+  if ( nvssearch ( tkey ) )                         // Does it exists?
+  {
+    statstr = nvsgetstr ( tkey ) ;                  // Get the station
+    inx = statstr.indexOf ( "#" ) ;                 // Get position of "#"
+    if ( inx > 0 )                                  // Hash sign present?
+    {
+      statstr.remove ( 0, inx + 1 ) ;               // Yes, remove non-comment part
+    }
+    chomp ( statstr ) ; 
+    icyname = statstr;
+  } 
+  displayinfo ( icyname.c_str(), 90, 36,            // Display preset name 
+              YELLOW ) ;
+  mqttpub.trigger ( MQTT_ICYNAME ) ;                // Publish preset name
+
   datamode = INIT ;                                 // Start default in metamode
   chunked = false ;                                 // Assume not chunked
   if ( host.endsWith ( ".m3u" ) )                   // Is it an m3u playlist?
