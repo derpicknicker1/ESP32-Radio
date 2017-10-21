@@ -80,6 +80,10 @@ const char config_html[] PROGMEM = R"=====(
       function ldef ( source )
       {
         var xhr = new XMLHttpRequest() ;
+        xhr.onprogress = function()
+        {
+          prefs.value = xhr.responseText ;
+        }
         xhr.onreadystatechange = function()
         {
           if ( xhr.readyState == XMLHttpRequest.DONE )
@@ -87,7 +91,7 @@ const char config_html[] PROGMEM = R"=====(
             prefs.value = xhr.responseText ;
           }
         }
-        xhr.open ( "GET", "/?" + source  + "&version=" + Math.random(), false ) ;
+        xhr.open ( "GET", "/?" + source  + "&version=" + Math.random()) ;
         xhr.send() ;
       }
 
@@ -131,14 +135,14 @@ const char config_html[] PROGMEM = R"=====(
               opt.text = networks[i] ;
               ssid.add( opt ) ;
             }
-            ldef ( "getprefs" ) ;
+            
           }
         }
-        xhr.open ( "GET", "/?getnetworks" + "&version=" + Math.random(), false ) ;
+        xhr.open ( "GET", "/?getnetworks" + "&version=" + Math.random()) ;
         xhr.send() ;
       }
-      
       lnet();
+      ldef ( "getprefs" ) ;
     </script>
   </body>
 </html>
