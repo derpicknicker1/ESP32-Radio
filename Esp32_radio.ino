@@ -287,15 +287,15 @@ String           SD_currentnode = "" ;                     // Node ID of song cu
 esp_err_t        nvserr ;                                  // Error code from nvs functions
 uint32_t         nvshandle = 0 ;                           // Handle for nvs access
 // Rotary encoder stuff
-uint16_t         clickcount = 0 ;                          // Incremented per encoder click, reset by timer
-int16_t          rotationcount = 0 ;                       // Current position of rotary switch
-uint16_t         enc_inactivity = false ;                  // Time inactive
-bool             singleclick = false ;                     // True if single click detected
-bool             doubleclick = false ;                     // True if double click detected
-bool             tripleclick = false ;                     // True if triple click detected
-bool             longclick = false ;                       // True if longclick detected
-enum enc_menu_t { VOLUME, PRESET, TRACK } ;                // State for rotary encoder menu
-enc_menu_t       enc_menu_mode = VOLUME ;                  // Default is VOLUME mode
+volatile uint16_t   clickcount = 0 ;                       // Incremented per encoder click, reset by timer
+volatile int16_t    rotationcount = 0 ;                    // Current position of rotary switch
+volatile uint16_t   enc_inactivity = false ;               // Time inactive
+volatile bool       singleclick = false ;                  // True if single click detected
+volatile bool       doubleclick = false ;                  // True if double click detected
+volatile bool       tripleclick = false ;                  // True if triple click detected
+volatile bool       longclick = false ;                    // True if longclick detected
+enum enc_menu_t     { VOLUME, PRESET, TRACK } ;            // State for rotary encoder menu
+enc_menu_t          enc_menu_mode = VOLUME ;               // Default is VOLUME mode
 //
 struct progpin_struct                                      // For programmable input pins
 {
