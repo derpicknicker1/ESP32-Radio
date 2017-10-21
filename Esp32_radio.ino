@@ -1970,7 +1970,7 @@ bool connectwifi()
   WiFi.softAPdisconnect(true) ;                         // still keep the old connection
 
   WiFi.begin("ThisIsJustADummy","notApassword");        // Workaround for issue #27
-
+  delay(300);
   pfs = "IP = 192.168.4.1" ;                            // Default IP address (no AP found)
   if ( num_an )                                         // Any AP defined?
   {
