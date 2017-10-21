@@ -1,0 +1,59 @@
+mqttbroker = mqtt.flowserv.pavo.uberspace.de
+mqttport = 65095
+mqttprefix = esp32radio_1
+mqttuser = none
+mqttpasswd = none
+#
+wifi_00 = EureKindersindlautundnervig/78818782342
+wifi_01 = IDA13WORK/L00A05713B2DB
+wifi_02 = TBB/78818782342
+wifi_03 = WLAN225835/mueder51
+#
+volume = 70
+toneha = 0
+tonehf = 1
+tonela = 0
+tonelf = 15
+#
+preset = 3
+#
+preset_00 = ndr-ndr1niedersachsen-hannover.cast.addradio.de/ndr/ndr1niedersachsen/hannover/mp3/128/stream.mp3 # 00 - NDR1 NDS
+preset_01 = ndr-ndr2-niedersachsen.cast.addradio.de/ndr/ndr2/niedersachsen/mp3/128/stream.mp3 # 01 - NDR2 NDS
+preset_02 = ndr-njoy-live.cast.addradio.de/ndr/njoy/live/mp3/128/stream.mp3 # 02 - NJOY
+preset_03 = antenne-nds.hoerradar.de/mp3-192_antenne-nds # 03 - Antenne NDS
+preset_04 = player.ffn.de/ffnstream.mp3 # 04 - ffn
+preset_05 = 188.94.97.91/radio21.mp3 # 05 - RADIO 21
+preset_06 = avw.mdr.de/streams/284320-0_mp3_high.m3u # 06 - MDR JUMP
+preset_07 = stream.tonkuhle.de:8000/tonkuhle.mp3 # 07 - Tonkuhle
+preset_08 = fhhalle.hoerradar.de/890rtl-live-mp3-hq # 08 - 89.0 RTL
+preset_09 = ndr-ndrkultur-live.cast.addradio.de/ndr/ndrkultur/live/mp3/128/stream.mp3 # 09 - NDR Kultur
+preset_10 = ndr-ndrinfo-niedersachsen.cast.addradio.de/ndr/ndrinfo/niedersachsen/mp3/128/stream.mp3 # 10 - NDR Info
+preset_11 = radio38.hoerradar.de/radio38-braunschweig-mp3-128 # 11 - RADIO38
+preset_12 = stream.radiosaw.de/saw/mp3-128/stream.mp3?context=fHA6LTE= # 12 - S A W
+preset_13 = rbb-fritz-live.cast.addradio.de/rbb/fritz/live/mp3/128/stream.mp3 # 13 - Fritz
+#
+gpio_00 = uppreset = 1
+#
+clk_server = pool.ntp.org
+clk_offset = 1
+clk_dst = 3
+#
+ir_pin = 35
+ir_58A7 = mute
+ir_609F = uppreset = 1
+ir_6897 = downpreset = 1
+ir_8877 = downvolume = 5
+ir_8A75 = debug = 0
+ir_9A65 = reset
+ir_A05F = resume
+ir_A857 = stop
+ir_B04F = upvolume = 5
+ir_B24D = debug = 1
+#
+tft_cs = 15
+tft_dc = 2
+#
+enc_clk = 25
+enc_dt = 26
+enc_sw = 27
+
