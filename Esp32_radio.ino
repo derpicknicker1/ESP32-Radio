@@ -4504,7 +4504,4 @@ String httpheader ( String contentstype )
                   "Cache-Control: " "max-age=3600\n"
                   "Last-Modified: " VERSION "\n\n" ) ;
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> refs/remotes/origin/MQTT_retain_and_status
