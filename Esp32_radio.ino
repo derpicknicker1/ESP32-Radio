@@ -113,7 +113,7 @@
 #define ILI9163C 0
 #define ST7735 1
 // set DISP to one of the display drivers defined above
-#define DISP ILI9163C
+#define DISP ST7735
 // Library include and color definitions for the TFT screen (if used)
 // TFT has bits 6 bits (0..5) for RED, 6 bits (6..11) for GREEN and 4 bits (12..15) for BLUE.
 #if DISP == ILI9163C
