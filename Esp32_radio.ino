@@ -3662,7 +3662,7 @@ void loop()
   scanserial() ;                                            // Handle serial input
   scandigital() ;                                           // Scan digital inputs
   scanIR() ;                                                // See if IR input
-  ArduinoOTA.handle() ;                                     // Check for OTA
+  //ArduinoOTA.handle() ;                                     // Check for OTA
   handlehttpreply() ;
   cmdclient = cmdserver.available() ;                       // Check Input from client?
   if ( cmdclient )                                          // Client connected?
