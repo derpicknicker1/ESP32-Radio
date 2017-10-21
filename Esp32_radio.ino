@@ -118,10 +118,10 @@
 // TFT has bits 6 bits (0..5) for RED, 6 bits (6..11) for GREEN and 4 bits (12..15) for BLUE.
 #if DISP == ILI9163C
   #include <TFT_ILI9163C.h>
-  #define	BLACK   0x0000
-  #define	BLUE    0xF800
-  #define	RED     0x001F
-  #define	GREEN   0x07E0
+  #define  BLACK   0x0000
+  #define  BLUE    0xF800
+  #define  RED     0x001F
+  #define  GREEN   0x07E0
 #else
   #include <Adafruit_ST7735.h>
   #define BLACK   ST7735_BLACK
@@ -1122,7 +1122,13 @@ char* dbgprint ( const char* format, ... )
   va_end ( varArgs ) ;                                 // End of using parameters
   if ( DEBUG )                                         // DEBUG on?
   {
-    Serial.print ( "D: " ) ;                           // Yes, print prefix
+    char timetxt[9];
+    sprintf ( timetxt, "%02d:%02d:%02d",                  // Yes, format to a string
+                timeinfo.tm_hour,
+                timeinfo.tm_min,
+                timeinfo.tm_sec ) ;
+    Serial.print( timetxt );
+    Serial.print ( " - D: " ) ;                           // Yes, print prefix
     Serial.println ( sbuf ) ;                          // and the info
   }
   return sbuf ;                                        // Return stored string
@@ -2746,6 +2752,11 @@ void setup()
   char     tmpstr[20] ;                                  // For version and Mac address
   char*    wvn = "Include file %s_html has the wrong version number!  Replace header file." ;
 
+  timer = timerBegin ( 0, 80, true ) ;                   // User 1st timer with prescaler 80
+  timerAttachInterrupt ( timer, &timer100, true ) ;      // Call timer100() on timer alarm
+  timerAlarmWrite ( timer, 100000, true ) ;              // Alarm every 100 msec
+  timerAlarmEnable ( timer ) ;                           // Enable the timer
+
   Serial.begin ( 115200 ) ;                              // For debug
   Serial.println() ;
   // Version tests for some vital include files
@@ -2898,10 +2909,6 @@ void setup()
   {
     currentpreset = ini_block.newpreset ;                // No network: do not start radio
   }
-  timer = timerBegin ( 0, 80, true ) ;                   // User 1st timer with prescaler 80
-  timerAttachInterrupt ( timer, &timer100, true ) ;      // Call timer100() on timer alarm
-  timerAlarmWrite ( timer, 100000, true ) ;              // Alarm every 100 msec
-  timerAlarmEnable ( timer ) ;                           // Enable the timer
   delay ( 1000 ) ;                                       // Show IP for a while
   configTime ( -ini_block.clk_offset * 3600,
                ini_block.clk_dst * 3600,
@@ -4504,4 +4511,3 @@ String httpheader ( String contentstype )
                   "Cache-Control: " "max-age=3600\n"
                   "Last-Modified: " VERSION "\n\n" ) ;
 }
-
